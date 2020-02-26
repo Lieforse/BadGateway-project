@@ -1,0 +1,41 @@
+﻿@page
+@model BadGateway.Pages.NewsModel
+@{
+    ViewData["Title"] = "News";
+}
+
+<div class="news_container"><a id="news_anchor"></a>
+    <div class="news_page_section">
+        <div class="image_container">
+            <img src="@Model.Post.ImageUrl" alt="" class="news_image">
+        </div>
+        <div class="news_text">
+            <h4 class="news_category">Security</h4>
+            <h3 class="news_title">@Model.Post.Title</h3>
+            <div class="date_string">
+                <p><img src="images/first_section/icons/calendar.png" alt="" class="calendar_icon"></p>
+                <p class="news_date">@Model.Post.DateCreated.ToShortDateString()</p>
+            </div>
+            <div class="news_paragraph">
+                @Html.Raw(Model.Post.Content)
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- news navigation  -->
+@{
+    var prevPost = Model.Post.Id - 1;
+    var nextPost = Model.Post.Id + 1;
+}
+<div class="news_navigation_container">
+    <a class="news_navigation_item" asp-page="News" asp-fragment="news_anchor" asp-route-id="@prevPost">
+        <p class="nav_arrow_left"><img src="images/news_page/left_arrow.png" alt=""></p>
+        <p class="button_post_text">previous post</p>
+    </a>
+    <a class="news_navigation_item" asp-page="News" asp-fragment="news_anchor" asp-route-id="@nextPost">
+        <p class="button_post_text">next post</p>
+        <p class="nav_arrow_right"><img src="images/news_page/right_arrow.png" alt=""></p>
+    </a>
+</div>

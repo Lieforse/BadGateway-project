@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="eng, uk">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/css/site.css">
+    <link href="https://fonts.googleapis.com/css?family=Courgette|Hind:300,400,500,600,700|Montserrat:400,700&display=swap" rel="stylesheet">
+    <title>Cybersec. blog</title>
+    <link rel="shortcut icon" href="" type="image-png">
+</head>
+<body>
+    <header class="header">
+        <a class="header_title_link" asp-page="Index">
+            <h1 class="header_title">Cybersec. <span class="title_style">blog</span></h1>
+        </a>
+    </header>
+
+    <!-- Slider -->
+    <vc:slider />
+
+    <!-- signup container  -->
+
+    <div class="container">
+        <div class="signup_container">
+            <h4 class="signup_title">Signup to<br>Newsletter</h4>
+            <form class="email_form" method="post">
+                <input type="text" placeholder="your name" minlength="2" class="form_input" name="userName">
+                <input type="email" placeholder="your e-mail adress" class="form_input" name="email">
+                <input type="submit" value="subscribe now" class="form_button" asp-page="Index" asp-page-handler="Subscribe">
+            </form>
+        </div>
+    </div>
+
+    <!-- main section -->
+
+    <section class="section">
+        <div class="sidebar">
+            <form class="search_form" method="get">
+                <input type="search" placeholder="search" class="search_input" name="search">
+                <input type="submit" class="search_button" value="" asp-page="Index">
+            </form>
+
+            <!-- feeds -->
+            <vc:feeds-list />
+
+            <!-- latest posts -->
+            <vc:latest-posts />
+
+        </div> <!-- /sidebar -->
+
+        <section class="main_news_section"><a id="news_anchor"></a>
+            @RenderBody()
+        </section>
+
+    </section>
+
+    <div class="footer_signup">
+        <h4 class="footer_signup_title">Want to receive the latest news about cybersecurity?</h4>
+        <div class="footer_signup_container">
+            <h4 class="footer_signup_subtitle">Signup to<br>Newsletter</h4>
+            <form class="footer_email_form" method="post">
+                <input type="text" placeholder="your name" minlength="2" class="form_input" name="userName">
+                <input type="email" placeholder="your e-mail adress" class="form_input" name="email">
+                <input type="submit" value="subscribe now" class="footer_form_button" asp-page="Index" asp-page-handler="Subscribe">
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer_container">
+            <h5 class="footer_text">2019 Copyright .all rigths reserved by badgateway team</h5>
+        </div>
+    </footer>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="~/js/slider.js"></script>
+    <script src="~/js/anchor.js"></script>
+</body>
+</html>

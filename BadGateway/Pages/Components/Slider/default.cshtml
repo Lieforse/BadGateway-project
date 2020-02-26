@@ -1,0 +1,22 @@
+﻿@model Dictionary<string, BadGateway.DataAccess.Models.Post>
+
+<div class="container">
+    <div class="slider">
+        <div class="slider__wrapper">
+            @foreach (var pair in Model)
+            {
+                <div class="slider__item" asp-page="News" asp-route-id="@pair.Value.Id" style="background-image: url(@pair.Value.ImageUrl);">
+                    <div class="slider_text_container">
+                        <div class="slider_text">
+                            <h3 class="latest_news">@pair.Key</h3>
+                            <h2 class="slider_news">@pair.Value.Title</h2>
+                            <a class="slider_button_link" data-target="an" asp-page="news" asp-fragment="news_anchor" asp-route-id="@pair.Value.Id">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="slider__control slider__control_left" href="#" role="button"></div>
+        <div class="slider__control slider__control_right" href="#" role="button"></div>
+    </div>
+</div>

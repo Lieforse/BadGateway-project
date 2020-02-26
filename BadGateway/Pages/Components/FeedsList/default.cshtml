@@ -1,0 +1,15 @@
+﻿@model List<BadGateway.DataAccess.Models.Feed>
+
+<div class="feeds">
+    <h3 class="sidebar_title">Feeds</h3>
+    <nav>
+        <ul class="sidebar_item">
+            @foreach (var feed in Model)
+            {
+                <li class="sidebar_item">
+                    <a asp-page="Index" asp-fragment="news_anchor" asp-route-feed="@feed.Id" class="sidebar_item">@feed.Name</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>

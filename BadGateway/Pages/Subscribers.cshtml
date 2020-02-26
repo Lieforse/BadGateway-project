@@ -1,0 +1,15 @@
+﻿@page
+@model BadGateway.Pages.SubscribersModel
+@{
+    ViewData["Title"] = "Subscribers";
+}
+
+<div class="news_container">
+    <h1>Subscribers</h1>
+    <ul>
+        @foreach (var subscriber in @Model.Subscribers)
+        {
+            <li>@subscriber.Id @subscriber.Email @subscriber.Name</li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,62 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@foreach (var post in @Model.Posts)
+{
+    <div class="news_container">
+        <div class="news_section">
+            <div class="image_container">
+                <img src="@post.ImageUrl" class="news_image">
+            </div>
+            <div class="news_text">
+                <h4 class="news_category">Security</h4>
+                <a class="read_more" asp-page="news" asp-fragment="news_anchor" asp-route-id="@post.Id"><h3 class="news_title">@post.Title</h3></a>
+                    <div class="date_string">
+                        <p><img src="~/images/first_section/icons/calendar.png" alt="" class="calendar_icon"></p>
+                        <p class="news_date">@post.DateCreated.ToShortDateString()</p>
+                    </div>
+                    <div class="news_paragraph">@Html.Raw(post.Description)</div>
+                    <a class="read_more" asp-page="news" asp-fragment="news_anchor" asp-route-id="@post.Id">Read more</a>
+</div>
+        </div>
+    </div>
+}
+
+@{
+    if (Model.Posts.TotalPages > 1)
+    {
+        <nav class="paging">
+            <ul class="paging_ul">
+                @{
+                    var feed = Request.Query["feed"];
+                    var search = Request.Query["search"];
+                    var pagesCount = Model.Posts.TotalPages > 10 ? 10 : Model.Posts.TotalPages;
+                    <li class="paging_list_element">
+                        <a class="paging_link" asp-route-feed="@feed" asp-route-search="@search" asp-route-pageNum="1">First Page</a>
+                    </li>
+
+                    for (var i = 1; i <= pagesCount; i++)
+                    {
+                        if (i == Model.Posts.PageIndex)
+                        {
+                            <li class="paging_link_active">@i</li>
+                        }
+                        else
+                        {
+                            <li class="paging_list_element">
+                                <a class="paging_link" asp-route-feed="@feed" asp-route-search="@search" asp-route-pageNum="@i">@i</a>
+                            </li>
+                        }
+                    }
+
+                    <li class="paging_list_element">
+                        <a class="paging_link" asp-route-feed="@feed" asp-route-search="@search" asp-route-pageNum="@Model.Posts.TotalPages">Last Page (@Model.Posts.TotalPages)</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    }
+}

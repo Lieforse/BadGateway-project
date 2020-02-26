@@ -1,0 +1,21 @@
+﻿@model List<BadGateway.DataAccess.Models.Post>
+
+<div class="latest_post">
+    <h3 class="sidebar_title">Latest post</h3>
+    <div class="latest_post_container">
+        @foreach (var post in Model)
+        {
+            <div class="latest_post_item">
+                <a class="latest_post_link" asp-page="News" asp-fragment="news_anchor" asp-route-id="@post.Id">
+                    <div class="latests_post_image_container">
+                        <img src="@post.ImageUrl" alt="" class="latests_post_image">
+                    </div>
+                    <div class="latest_post_text">
+                        <h4 class="latest_posts_title">@post.Title</h4>
+                        <p class="latest_post_date">@post.DateCreated.ToShortDateString()</p>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
